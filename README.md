@@ -1,7 +1,7 @@
 # code-writer
 Helper classes used to write code
 
-To be used like:
+### To be used like:
 
             var sb = new StringBuilder();
             using (var classWriter = new ClassWriter("PersonViewModel", sb))
@@ -15,8 +15,8 @@ To be used like:
 
             string  generated_class = sb.ToString();
             
-Which generates:         
- 
+### Which generates:         
+```
 public class PersonViewModel:BindableBase,INotifyPropertyChanged{
 
 public void Method1(){
@@ -31,3 +31,4 @@ private System.Int32 Method3(){
 }
 
 }
+```
