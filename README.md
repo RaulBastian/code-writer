@@ -4,13 +4,13 @@ Helper classes used to write code
 ### To be used like:
 
             var sb = new StringBuilder();
-            using (var classWriter = new ClassWriter("PersonViewModel", sb))
+            using (var cw = new ClassWriter("PersonViewModel", sb))
             {
-                classWriter.SetBaseClass("BindableBase");
-                classWriter.ImplementInterface("INotifyPropertyChanged");
-                classWriter.WriteMethod("Method1");
-                classWriter.WriteMethod("Method2");
-                classWriter.WriteMethod("Method3", AccessModifiers.@private,typeof(int));
+                cw.SetBaseClass("BindableBase");
+                cw.ImplementInterface("INotifyPropertyChanged");
+                cw.WriteMethod("Method1");
+                cw.WriteMethod("Method2");
+                cw.WriteMethod("Method3", AccessModifiers.@private,typeof(int));
             }
 
             string  generated_class = sb.ToString();
