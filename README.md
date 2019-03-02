@@ -1,4 +1,4 @@
-# code-writer
+# Code Writer
 Helper classes used to write code
 
 ### To be used like:
