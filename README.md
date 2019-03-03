@@ -2,7 +2,7 @@
 Helper classes used to write code
 
 ### To be used like:
-
+```
  var sb = new StringBuilder();
             using (var cw = new ClassWriter("PersonViewModel", sb))
             {
@@ -37,7 +37,7 @@ Helper classes used to write code
                                      ).ToString()
                 });
             }
-            
+```            
 Which generates:         
  
 public class PersonViewModel:BindableBase,System.ComponentModel.INotifyPropertyChanged{
