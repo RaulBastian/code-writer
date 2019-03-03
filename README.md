@@ -38,10 +38,6 @@ Helper classes used to write code
                 });
             }
 ```            
-Which generates:         
- 
-public class PersonViewModel:BindableBase,System.ComponentModel.INotifyPropertyChanged{
-=======
 ### Which generates:         
 ```
 public class PersonViewModel:BindableBase,System.ComponentModel.INotifyPropertyChanged{
