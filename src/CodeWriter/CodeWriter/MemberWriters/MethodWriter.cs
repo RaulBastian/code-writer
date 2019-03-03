@@ -1,21 +1,26 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace CodeWriter.MemberWriters
 {
-    public class MethodWriter : MemberWriterBase
+    /// <summary>
+    /// Writes a method
+    /// </summary>
+    internal class MethodWriter : MemberWriterBase
     {
         private Type returnType = null;
         private AccessModifiers? modifier = null;
         private string methodName = "";
 
-        public MethodWriter(string name,StringWriter writer, Type returnType = null, AccessModifiers? modifider = null)
-            :base(writer)
+        public MethodWriter(string name, Type returnType = null, AccessModifiers? modifider = null)
         {
             this.methodName = name;
             this.modifier = modifider;
             this.returnType = returnType;
         }
+
+        public override string BodyAsString { get; set; }
 
         protected override MemberType Type { get { return MemberType.method; } }
 
@@ -32,7 +37,16 @@ namespace CodeWriter.MemberWriters
 
         protected override string EndWrite()
         {
-            return $"{Constantes.CLOSING_CURLY_BRACE}";
+            var sb = new StringBuilder();
+
+            if(!string.IsNullOrEmpty(BodyAsString))
+            {
+                sb.Append(BodyAsString);
+            }
+
+            sb.AppendLine($"{Constantes.CLOSING_CURLY_BRACE}");
+
+            return sb.ToString();
         }
     }
 }

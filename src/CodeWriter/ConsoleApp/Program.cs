@@ -1,7 +1,9 @@
 ﻿using CodeWriter;
+using CodeWriter.MemberWriters;
 using CodeWriter.TypeWriters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,16 +16,41 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             var sb = new StringBuilder();
-            using (var classWriter = new ClassWriter("PersonViewModel", sb))
+            using (var cw = new ClassWriter("PersonViewModel", sb))
             {
-                classWriter.SetBaseClass("BindableBase");
-                classWriter.ImplementInterface("INotifyPropertyChanged");
-                classWriter.WriteMethod("Method1");
-                classWriter.WriteMethod("Method2");
-                classWriter.WriteMethod("Method3", AccessModifiers.@private,typeof(int));
+                //Base class and interfaces
+                cw.SetBaseClass("BindableBase");
+                cw.ImplementInterface<INotifyPropertyChanged>();
+
+                //Private fields
+                cw.WriteRaw("private IList<string> entries = null");
+                cw.WriteRaw("private IList<string> entries1 = null");
+
+                //Constructors
+                cw.WriteConstructor();
+                cw.WriteConstructor(new ConstructorWriterInfo()
+                {
+                    BodyAsString = (new StringBuilder()
+                                         .AppendLine("string s = 'Hello';")
+                                   ).ToString()
+                });
+
+                //Methods
+                cw.WriteMethod("Method1");
+                cw.WriteMethod("Method2");
+                cw.WriteMethod("Method3", AccessModifiers.@private, typeof(int));
+                cw.WriteMethod(new MethodWriterInfo("Method4")
+                {
+                    BodyAsString = (new StringBuilder()
+                                        .AppendLine("int a = 2;")
+                                        .AppendLine("int b = 4;")
+                                        .AppendLine("int c = a + b;")
+                                        .AppendLine("Console.WriteLine(c);")
+                                     ).ToString()
+                });
             }
 
-            string def = sb.ToString();
+            string generated_class = sb.ToString();
         }
     }
 }

@@ -2,9 +2,14 @@
 
 namespace CodeWriter.MemberWriters
 {
-    public abstract class MemberWriterBase: WriterBase
+    /// <summary>
+    /// Member writer base class
+    /// </summary>
+    internal abstract class MemberWriterBase : WriterBase
     {
-        public MemberWriterBase(StringWriter writer) : base(writer) { }
+        public MemberWriterBase() : base() { }
+
+        public abstract string BodyAsString { get; set; }
 
         protected abstract MemberType Type { get; }
 
@@ -12,10 +17,10 @@ namespace CodeWriter.MemberWriters
 
         protected abstract string EndWrite();
 
-        public void Write()
+        public void Write(StringWriter writer)
         {
-            Writer.WriteLine(StartWrite());
-            Writer.WriteLine(EndWrite());
+            writer.WriteLine(StartWrite());
+            writer.WriteLine(EndWrite());
         }
     }
 }

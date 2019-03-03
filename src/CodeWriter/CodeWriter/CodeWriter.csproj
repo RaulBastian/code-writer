@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessModifiers.cs" />
+    <Compile Include="MemberWriters\ConstructorWriter.cs" />
+    <Compile Include="MemberWriters\ConstructorWriterInfo.cs" />
     <Compile Include="MemberWriters\MemberType.cs" />
     <Compile Include="MemberWriters\MemberWriterBase.cs" />
     <Compile Include="MemberWriters\MethodWriter.cs" />
-    <Compile Include="TypeWriters\ClassSettings.cs" />
+    <Compile Include="MemberWriters\MethodWriterInfo.cs" />
+    <Compile Include="MemberWriters\WriterInfoBase.cs" />
     <Compile Include="TypeWriters\ClassWriter.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,6 +2,7 @@
 {
     public enum MemberType
     {
-        @method
+        @method,
+        @constructor
     }
 }
